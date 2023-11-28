@@ -1,0 +1,80 @@
+<% layout('/layouts/biolerplate') %>
+
+   
+    <div class="row offset-2 mt-3">
+        <div class="col-8 ">
+            
+        <h2>Create a new Listing</h2>
+    <form method="post" action="/Listings" novalidate class="needs-validation" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input required name="listing[title]" type="text" placeholder="Enter catchy title" class="form-control">
+            <div class="valid-feedback">
+                Title Looks good!
+            </div>
+            <div class="invalid-feedback">
+               Title field is required
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <label  for="description" class="form-label">description</label>
+            <textarea required name="listing[description]" type="text"  class="form-control"></textarea>
+            <div class="valid-feedback">
+                Description Looks good!
+               </div>
+               <div class="invalid-feedback">
+                 Descripion field is required
+                </div>
+        </div>
+       
+
+
+        <div class="mb-3">
+            <label  for="image" class="form-label">upload image</label>
+            <input required type="file"  name="listing[image]" class="form-control">
+        </div>
+       
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label for="price" class="form-label">Price</label>
+                <input required name="listing[price]"  placeholder="1200" class="form-control">
+                <div class="valid-feedback">
+                   Price field Looks good!
+                   </div>
+                   <div class="invalid-feedback">
+                    Price field is required
+                    </div>
+            </div>
+            
+           <div class="mb-3 col-md-8">
+               <label  for="location" class="form-label">location</label>
+               <input required name="listing[location]" type="text" placeholder="Lonavala , Pune " class="form-control">
+               <div class="valid-feedback">
+                Location field Looks good!
+               </div>
+               <div class="invalid-feedback">
+                 Location field is required
+                </div>
+           </div>
+        </div>
+       
+        
+        <div class="mb-3">
+            <label  for="country" class="form-label">country</label>
+            <input required type="text" name="listing[country]" placeholder="India"  placeholder="India" class="form-control">
+            <div class="valid-feedback">
+                Counrty field Looks good!
+               </div>
+               <div class="invalid-feedback">
+                 Country field is required
+                </div>
+        </div>
+        
+        <button class="btn btn-dark mb-3 add-btn">Add</button>
+    
+    </form>
+    </div>
+    </div>
+
+
