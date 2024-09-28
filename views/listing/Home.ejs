@@ -1,0 +1,118 @@
+<% layout("/layout/Biolerplate.ejs") %>
+<style>
+    .About{
+        padding: 3rem; display: flex; justify-content: space-between; 
+    }
+    .About1{
+        width: 50%;
+    }
+    @media(width < 1000px){
+        .About{
+            flex-wrap: wrap;
+        }
+        .About1{
+            text-align: center;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        
+    }
+    @media(width < 850px){
+        .services-M{
+            flex-wrap: wrap;
+        }
+    }
+    .services-M{
+        background-color: rgb(230, 250, 254); padding: 3rem; margin: 10px;
+    }
+    .services{
+        margin-right: 10px; text-align: center; display: flex; justify-content: center; flex-direction: column; align-items: center;
+    }
+    .icons{
+        font-size: 4rem; margin-bottom: 10px;
+    }
+</style>
+<!-- --- About US --- -->
+<div id="About" class="About">
+    <div class="About1">
+        <h1 style="color: #161D6F;">ABOUT US</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut iure necessitatibus, laboriosam cupiditate tenetur repudiandae? Fugit iusto itaque culpa amet beatae architecto, quod nobis corporis quisquam, sapiente modi aspernatur obcaecati.</p>
+    </div>
+
+        <div style="display: flex;text-align: center; flex-wrap: wrap; align-items: center; justify-content: center;">
+            <div>
+                <div>
+                    <h1 style="color: #161D6F;">$110M</h1>
+                    <p>Propertise sold</p>
+                </div>
+                <div>
+                    <h1 style="color: #161D6F;">$10+</h1>
+                    <p>Years of experience</p>
+                </div>
+            </div>
+
+            <div>
+
+                <div>
+                    <h1 style="color: #161D6F;">$25+</h1>
+                    <p>Professional Agents sold</p>
+                </div>
+                <div>
+                    <h1 style="color: #161D6F;">30+</h1>
+                    <p>Awards</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- --- Deals --- -->
+
+<div style="padding: 1rem;">
+    <h1 style="text-align: center;">Best Deals for you</h1>
+    
+    <div>
+    <div style="display: flex; justify-content: center;" class="  row row-cols-lg-4 row-cols-md-2 row-cols-sm-1">
+        <% for(list of listing) { %>
+        
+    
+              <a href="/listings/<%= list._id %>" class="listing-link">
+                <div class="card mb-4 card-bord">
+                    <img src=<%= list.image.url %> class="card-img-top card-img" alt="...">
+                    <div style="color:#000; width: 100%; padding: 15px; background-color: rgba(255, 255, 255,0.6); position: absolute; text-align: center; bottom: 0;" class="card-body">
+                      <h5 class="card-title">Title:<%= list.title %></h5>
+                      <p class="card-text">Price: <%= list.price %></p> 
+                      <i class="taxGst">+18 % gst</i>
+                    </div>
+                  </div>
+                  </a>
+            
+        
+        
+      <% } %>
+    </div>
+    </div>
+</div>
+
+<!-- --- Services --- -->
+
+<div id="Services" class="d-flex  services-M">
+    <div class="services" >
+        <i  class="fa-solid fa-person icons"></i>
+        <h1>Easy Ownership</h1>
+        <p >Find Properties with an immersive photo experience and the most listing,including the things you won't find anywhere else</p>
+    </div>
+    <div class="services" >
+        <i class="fa-solid fa-location-crosshairs icons"></i>
+        <h1>Suitable Location</h1>
+        <p>Find Properties with an immersive photo experience and the most listing,including the things you won't find anywhere else</p>
+    </div>
+    <div class="services" >
+        <i class="fa-solid fa-shield-heart icons"></i>
+        <!-- <i style="font-size: 5rem;" class="fa-solid fa-location-crosshairs"></i> -->
+        <h1>Suitable Location</h1>
+        <p>Find Properties with an immersive photo experience and the most listing,including the things you won't find anywhere else</p>
+    </div>
+</div>

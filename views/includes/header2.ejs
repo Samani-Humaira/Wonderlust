@@ -1,0 +1,134 @@
+<style>
+    .search-btn{
+    background-color: #088395 ;
+    color:#fff;
+
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+  }
+  .search-btn:hover{
+    background-color: #088395 ;
+    color:#fff;
+  }
+  .search-btn i{
+    display: inline;
+    margin-right: 0.5rem;
+  }
+  .search-inp{
+    border-radius: 10px;
+    padding:0.5rem 3rem 0.5rem 3rem;
+    /* width: 30rem; */
+    border-color: #088395;
+    font-size: 1rem ;
+  }
+
+  .nav-link {
+    position: relative;
+    color: #088395; /* Initial color of the link */
+    text-decoration: none; /* Remove default underline */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+.search-Main{
+  background-color: #fff;
+  padding:5px;
+  border-radius: 13px;
+}
+.navbar{
+  background-color: #e2e9f5 !important;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px; /* Thickness of the underline */
+    background-color: #088395; /* Color of the underline */
+    left: 0;
+    bottom: -2px; /* Position underline slightly below the text */
+    transition: width 0.3s ease; /* Smooth transition for the underline */
+}
+
+.nav-link:hover {
+    color: #088395; /* Change text color on hover */
+}
+
+.nav-link:hover::after {
+    width: 100%; /* Expand underline on hover */
+}
+
+</style>
+<nav class="navbar  navbar-expand-md bg-body-tertiary" style="background-color: none;">
+
+
+    <div class="container-fluid">
+      <!-- <a class="navbar-brand" href="/listings"><i class="fa-sharp fa-regular fa-compass"></i></a> -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-linkk active" aria-current="page" href="/" style="color:#088395; font-size: 25px; font-weight: 700; text-decoration: none;">StaySphere</a>
+          </li>
+          
+        </ul>
+
+        <!-- <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="/">Home</a> -->
+        <!-- </div> -->
+
+        <!-- <div class="navbar-nav ms-auto">
+          <form class="d-flex" role="search" method="get" action="/listings/find/search">
+            <input class="form-control me-2 search-inp" type="search" placeholder="Search by country" name="srch" aria-label="Search">
+            <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          </form>
+        </div> -->
+
+        <div class="navbar-nav ms-auto search-Main ">
+          <form class="d-flex" role="search" method="get" action="/listings/find/search">
+            <select style="border-color: #088395;" class="form-select me-2" name="filter" aria-label="Select filter type">
+              <option value="country">Country</option>
+              <option value="title">Title</option>
+              <option value="price">Price</option>
+            </select>
+            <input class="form-control me-2 search-inp" type="search" placeholder="Search" name="srch" aria-label="Search" required>
+            <button class="btn search-btn" type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+        </div>
+        
+
+        <div class=" ms-auto">
+          <ul class="navbar-nav">
+
+            
+            
+          <li class="nav-item">
+            <a class="nav-link" href="/listings/new">Add spaces</a>
+          </li>
+           <%  if(!currUser) { %>
+
+            <li class="nav-item">
+              <a style="color: #23b6cd;" class="nav-link active" aria-current="page" href="/signup"><b>SignUp</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login"><b>Login</b></a>
+            </li>
+            <% } %>
+
+            <%  if(currUser) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout"><b>Logout</b></a>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+  </nav> 

@@ -1,0 +1,69 @@
+<%- layout("./layout/Biolerplate.ejs") %>
+<style>
+  .newForm{
+    border:1px solid aqua;
+    width: fit-content;
+    padding: 10px;
+    margin: auto;
+    background-color: #d2f6f9;
+  }
+</style>
+
+    <div class="row mt-4 newForm" >
+        <div class="col-lg-8 col-sm-10 offset-sm-1 offset-lg-2">
+    <form method="post" action="/listings/new" novalidate class="needs-validation" enctype="multipart/form-data">
+        <div class="mb-3" >
+          <label for="Title" class="form-label">Title</label>
+          <input required name="listing[title]" placeholder="Enter your title" type="text" class="form-control" id="Title">
+          <div class="invalid-feedback">
+            field required
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <input required name="listing[description]"  placeholder="Enter your title" type="text" class="form-control" id="description">
+          <div class="invalid-feedback">
+            field required
+          </div>  
+        </div>
+        <div class="mb-3 ">
+            <label for="image" class="form-label">upload listing image</label>
+            <input  name="listing[image]"  placeholder="Enter your image link" type="file" class="form-control" id="image" required>
+        </div>
+        <div class="mb-3 ">
+            <label for="price" class="form-label">price</label>
+            <input required name="listing[price]"  placeholder="Enter price" type="text" class="form-control" id="price">
+            <div class="invalid-feedback">
+              field required
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <label for="location" class="form-label">location</label>
+                <input required name="listing[location]"  placeholder="Enter location" type="text" class="form-control" id="price">
+                <div class="invalid-feedback">
+                  field required
+                </div>
+            </div>
+            <div class="col">
+                <label for="country" class="form-label">country</label>
+                <input required name="listing[country]"  placeholder="Enter country" type="text" class="form-control" id="country">
+                <div class="invalid-feedback">
+                  field required
+                </div>
+            </div>
+            <div class="col">
+              <label for="country" class="form-label">Category</label>
+              <input required name="listing[category]"  placeholder="Enter category" type="text" class="form-control" id="category">
+              <div class="invalid-feedback">
+                field required
+              </div>
+          </div>
+          </div>
+        <button type="submit" class="btn button">Submit</button>
+      </form>
+      </div>
+      </div>
+
+        

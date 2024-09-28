@@ -1,0 +1,125 @@
+<style>
+    .search-btn{
+    background-color: #088395 ;
+    color:#fff;
+
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+  }
+  .search-btn:hover{
+    background-color: #088395 ;
+    color:#fff;
+  }
+  .search-btn i{
+    display: inline;
+    margin-right: 0.5rem;
+  }
+  .search-inp{
+    border-radius: 10px;
+    padding:0.5rem 3rem 0.5rem 3rem;
+    /* width: 30rem; */
+    border-color: #088395;
+    font-size: 1rem ;
+  }
+
+
+
+  .nav-link {
+    position: relative;
+    color: #fff; /* Initial color of the link */
+    text-decoration: none; /* Remove default underline */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px; /* Thickness of the underline */
+    background-color: #91d8e3; /* Color of the underline */
+    left: 0;
+    bottom: -2px; /* Position underline slightly below the text */
+    transition: width 0.3s ease; /* Smooth transition for the underline */
+}
+
+.nav-link:hover {
+    color: #91d8e3; /* Change text color on hover */
+}
+
+.nav-link:hover::after {
+    width: 100%; /* Expand underline on hover */
+}
+
+</style>
+<nav class="navbarP navbar navbar-expand-md bg-body-tertiary">
+
+
+    <div class="container-fluid">
+      <!-- <a class="navbar-brand" href="/listings"><i class="fa-sharp fa-regular fa-compass"></i></a> -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-linkk active" aria-current="page" href="/" style="color:#91d8e3; font-size: 25px; font-weight: 700; text-decoration: none;"><i class="fa-solid fa-house"></i> StaySphere</a>
+          </li>
+          
+        </ul>
+
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="/listings">Properties</a>
+          <a class="nav-link" href="#About">About Us</a>
+          <a class="nav-link" href="#Services">services</a>
+          <a class="nav-link">Contact Us</a>
+        </div>
+
+        <!-- <div class="navbar-nav ms-auto">
+          <form class="d-flex" role="search" method="get" action="/listings/find/search">
+            <input class="form-control me-2 search-inp" type="search" placeholder="Search by country" name="srch" aria-label="Search">
+            <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          </form>
+        </div> -->
+
+        <div class=" ms-auto">
+          <ul class="navbar-nav">
+            
+          <li class="nav-item">
+            <a class="nav-link" href="/listings/new">Add Spaces</a>
+          </li>
+           <%  if(!currUser) { %>
+
+            <li class="nav-item">
+              <a style="color: #91d8e3;" class="nav-link active" aria-current="page" href="/signup"><b>SignUp</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login"><b>Login</b></a>
+            </li>
+            <% } %>
+
+            <%  if(currUser) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout"><b>Logout</b></a>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    
+  <div class="p-3" style="align-self: center; text-align: center; align-items: center; justify-content: center; display: flex; flex-direction: column; justify-content: center; height: 90%; color: #fff; ">
+    <div>
+      <h1 class="random" style="  color:#a8ebf6;">Buy , rent , or sell your property easily</h1>
+      <h1>Find a <span class="random" style=" font-size: 2rem; color: #a8ebf6; padding: 1px;">Perfect Home</span> With Us</h1>
+    </div>
+    <div>
+
+    </div>
+  </div>
+
+
+  </nav> 

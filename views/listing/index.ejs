@@ -1,0 +1,112 @@
+<% layout("/layout/Biolerplate.ejs") %> 
+
+<style>
+
+</style>
+
+<body>
+  <div style="display: flex;">
+    <!-- <%- include("../includes/flash.ejs") %> -->
+
+  <div class="Inner-container ">
+    <div class="filters">
+      <div id="filter">
+        <a href="/listings/find?filter=Trending" class="anchor">
+          <div class="fil-icon">
+            <i class="fa-solid fa-fire"></i>
+            <p>Trending</p>
+          </div>
+        </a>
+
+        <a href="/listings/find?filter=Mountain" class="anchor">
+          <div class="fil-icon">
+            <i class="fa-solid fa-mountain"></i>
+            <p>Mountains</p>
+          </div>
+        </a>
+
+        <a href="/listings/find?filter=Rooms" class="anchor">
+          <div class="fil-icon">
+            <i class="fa-solid fa-bed"></i>
+            <p>Rooms</p>
+          </div>
+        </a>
+
+        <a href="/listings/find?filter=Cities" class="anchor">
+          <div class="fil-icon">
+            <i class="fa-solid fa-city"></i>
+            <p>Cities</p>
+          </div>
+        </a>
+
+        <a href="/listings/find?filter=Castles" class="anchor">
+          <div class="fil-icon">
+            <i class="fa-brands fa-fort-awesome"></i>
+            <p>Castles</p>
+          </div>
+        </a>
+
+        <a href="/listings/find?filter=Farms" class="anchor">
+          <div class="fil-icon">
+            <i class="fa-sharp fa-solid fa-cow"></i>
+            <p>Farms</p>
+          </div>
+        </a>
+
+        <a href="/listings/find?filter=Arctic" class="anchor">
+          <div class="fil-icon">
+            <i class="fa-regular fa-snowflake"></i>
+            <p>Arctic</p>
+          </div>
+        </a>
+
+        <a href="/listings/find?filter=Domes" class="anchor">
+          <div class="fil-icon">
+            <i class="fa-solid fa-igloo"></i>
+            <p>Domes</p>
+          </div>
+        </a>
+
+        <a href="/listings/find?filter=Boats" class="anchor">
+          <div class="fil-icon">
+            <i class="fa-solid fa-ship"></i>
+            <p>Boats</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="cards-section">
+      <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+        <% for(list of listing) { %>
+          <a href="/listings/<%= list.id %>" class="listing-link">
+            <div class="card mb-4 card-bord">
+              <img src=<%= list.image.url %> class="card-img-top card-img" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Title:<%= list.title %></h5>
+                <p class="card-text">Price: <%= list.price %></p> 
+                <i class="taxGst">+18 % gst</i>
+              </div>
+            </div>
+          </a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+
+<script>
+  let tax = document.getElementById("flexSwitchCheckDefault");
+
+  tax.addEventListener("click", () => {
+    let taxInfo = document.getElementsByClassName("taxGst");
+    for (let taxes of taxInfo) {
+      if (taxes.style.display !== "inline") {
+        taxes.style.display = "inline";
+      } else {
+        taxes.style.display = "none";
+      }
+    }
+  });
+</script>

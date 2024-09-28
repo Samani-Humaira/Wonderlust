@@ -1,0 +1,219 @@
+body{
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    display:flex;
+    flex-direction:column;
+    min-height: 100vh ;
+}
+.container-B{
+  flex:1 !important;
+  padding-left: 15px;
+}
+.navbar{
+    padding-bottom: 1rem ;
+    padding-top: 1rem;
+    width:100%;
+}
+.navbarP{
+    padding-bottom: 1rem ;
+    padding-top: 1rem;
+    width:100%;
+    height: 600px;display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;background-image: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 2, 0.7)), /* black shade */
+    url("https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg");
+    background-position: center ;
+    background-size:cover ;
+
+}
+.fa-compass{
+   font-size:2.5rem;
+   color: #fe424d;
+}
+.listing-link{
+    text-decoration: none !important;
+    color:black;
+}
+.card-bord{
+    border: none !important;
+}
+.card-body{
+    padding:0 !important;
+}
+.card-img-top{
+    object-fit: cover !important;
+    width:100%;
+    border-radius: 1rem !important;
+    height: 20rem !important;
+}
+.btns{
+    display:flex;
+    
+}
+.link-btns{
+    margin-right:1rem;
+}
+.comment{
+    padding:10px;
+}
+
+#map{
+    height :100px;
+    width:100px;
+}
+
+.random{
+    font-family: "Rye", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 5rem;
+  }
+
+  @media (width <= 500px){
+    .random{
+        font-size: 2rem; 
+      }
+}
+
+.Inner-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .filters {
+    margin-top: 1rem;
+    flex-basis: 10%; /* Adjust this percentage to control the width of the filter section */
+    display: flex;
+    flex-direction: column;
+    padding-right: 1rem;
+  }
+
+  #filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e3f2f5;
+    justify-content: center;
+    border: 1px solid #a3e4ee;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  @media(width < 800px){
+    #filter {
+    /* display: flex; */
+    padding: 20px;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-between
+  }
+  }
+
+  .fil-icon {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fil-icon i {
+    font-size: 15px;
+    margin-right: 0.5rem;
+  }
+
+  .taxGst {
+    display: none;
+  }
+
+  .anchor:hover {
+    color: blue;
+  }
+
+  .anchor {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+  }
+
+  .cards-section {
+    flex-basis: 80%; /* Adjust this percentage to control the width of the cards section */
+    flex-grow: 1;
+    padding: 10px;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  #tax {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0.5rem;
+  }
+
+  @media (max-width: 800px) {
+    .Inner-container  {
+      flex-direction: column;
+    }
+
+    .filters, .cards-section {
+      flex-basis: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #tax label {
+      font-size: 14px;
+    }
+  }
+  .button{
+    background-color: #227B94;
+    color: white;
+  }
+  .button:hover{
+    background-color: #3592ac;
+    color: white;
+  }
+  .userActTitle{
+    font-family:" serif";
+    font-weight: 400;
+    font-style: normal;
+  }
+  .user{
+    /* margin: auto; */
+     width: fit-content; background-color: rgb(160, 206, 227); padding: 1rem; margin: auto; margin-top: 10px;
+  }
+  footer{
+    background-color: #001F3F;
+    /* position: absolute; */
+    /* bottom: 0; */
+    width: 100%;
+    padding: 1rem;
+    color: white  ;
+    
+  }
+
+  .f-info{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid rgba(186, 185, 185, 0.1);
+  }
+  .f-info1{
+    width: 40%;
+  }
+  .f-aboutUS{
+    display: flex;
+    flex-direction: column;
+  }
+  .f-s-link{
+    margin-right: 10px;
+  }
+  .f-info-brand{
+    text-align: center;
+    padding : 1rem;
+  }

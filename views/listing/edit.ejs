@@ -1,0 +1,47 @@
+<%- layout("./layout/Biolerplate.ejs") %>
+
+<!-- <%- include("../includes/header2.ejs") %> -->
+
+    <div class="row mt-4">
+        <div class="col-lg-8 col-sm-10 offset-sm-1 offset-lg-2">
+    <form method="post" action="/listings/<%= listi.id %>?_method=PATCH" novalidate class="needs-validation" enctype="multipart/form-data">
+        <div class="mb-3" >
+          <label for="Title" class="form-label">Title</label>
+          <input required name="listing[title]" placeholder="Enter your title" type="text" value=<%= listi.title %> class="form-control" id="Title">
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea required  name="listing[description]"  placeholder="Enter your title" type="text" class="form-control" id="description"><%= listi.description %></textarea>
+        </div>
+
+        <div class="mb-3 ">
+          Original listing image <br> 
+          <img src="<%= originalImgUrl %>" height="200" width="250">
+      </div>
+
+        <div class="mb-3 ">
+            <label for="image" class="form-label">Upload New Image</label>
+            <input  name="listing[image]"  placeholder="Enter your image link" type="file" class="form-control" id="image">
+        </div>
+        <div class="mb-3 ">
+            <label for="price" class="form-label">price</label>
+            <input required name="listing[price]"  placeholder="Enter price" type="number" class="form-control" value=<%= listi.price %> id="price">
+        </div>
+
+        <div class="row mb-3">
+            <div class="col">
+                <label for="location" class="form-label">location</label>
+                <input required name="listing[location]"  placeholder="Enter location"  value=<%= listi.location %> type="text" class="form-control" id="price">
+            </div>
+            <div class="col">
+                <label for="country" class="form-label">country</label>
+                <input required name="listing[country]"  placeholder="Enter country" value=<%= listi.country %> type="text" class="form-control" id="country">
+            </div>
+          </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      </div>
+      </div>
+
+</body>
+</html>
