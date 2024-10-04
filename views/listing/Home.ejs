@@ -22,10 +22,21 @@
             flex-wrap: wrap;
         }
     }
+
+    @media(width > 850px){
+        .ser{
+        padding: 1rem;
+        border-right: 3px solid black;
+    }
+    }
+
     .services-M{
-        background-color: rgb(230, 250, 254); padding: 3rem; margin: 10px;
+        padding: 3rem; 
+        margin: 10px; 
+        /* background-color: rgb(230, 250, 254); padding: 3rem; margin: 10px; */
     }
     .services{
+        /* border-right: 2px solid black; */
         margin-right: 10px; text-align: center; display: flex; justify-content: center; flex-direction: column; align-items: center;
     }
     .icons{
@@ -36,17 +47,17 @@
 <div id="About" class="About">
     <div class="About1">
         <h1 style="color: #161D6F;">ABOUT US</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut iure necessitatibus, laboriosam cupiditate tenetur repudiandae? Fugit iusto itaque culpa amet beatae architecto, quod nobis corporis quisquam, sapiente modi aspernatur obcaecati.</p>
+        <p>At *StaySphere*, we believe in creating a seamless and community-driven experience for travelers and homeowners alike. Our platform allows locals to list their homes, villas, and unique stays while offering flexible rental options for families, groups, or solo adventurers. We prioritize trust, ensuring all properties and hosts are verified for safety and reliability. Whether you're looking for a cozy getaway or a collaborative living experience, StaySphere connects you to your perfect stay.</p>
     </div>
 
-        <div style="display: flex;text-align: center; flex-wrap: wrap; align-items: center; justify-content: center;">
+        <div style=" display: flex;text-align: center; flex-wrap: wrap; align-items: center; justify-content: center;">
             <div>
                 <div>
-                    <h1 style="color: #161D6F;">$110M</h1>
+                    <h1 style="color: #161D6F;">110M+</h1>
                     <p>Propertise sold</p>
                 </div>
                 <div>
-                    <h1 style="color: #161D6F;">$10+</h1>
+                    <h1 style="color: #161D6F;">10+</h1>
                     <p>Years of experience</p>
                 </div>
             </div>
@@ -54,12 +65,12 @@
             <div>
 
                 <div>
-                    <h1 style="color: #161D6F;">$25+</h1>
-                    <p>Professional Agents sold</p>
+                    <h1 style="color: #161D6F;">1,000+</h1>
+                    <p>Happy Travelers</p>
                 </div>
                 <div>
-                    <h1 style="color: #161D6F;">30+</h1>
-                    <p>Awards</p>
+                    <h1 style="color: #161D6F;">98%</h1>
+                    <p>&nbsp; &nbsp; Customer Satisfaction Rate</p>
                 </div>
 
             </div>
@@ -97,22 +108,23 @@
 </div>
 
 <!-- --- Services --- -->
-
+<h1 style="text-align: center;">Our Services</h1>
 <div id="Services" class="d-flex  services-M">
-    <div class="services" >
+    
+    <div class="services ser" >
         <i  class="fa-solid fa-person icons"></i>
         <h1>Easy Ownership</h1>
         <p >Find Properties with an immersive photo experience and the most listing,including the things you won't find anywhere else</p>
     </div>
-    <div class="services" >
+    <div class="services ser" >
         <i class="fa-solid fa-location-crosshairs icons"></i>
         <h1>Suitable Location</h1>
         <p>Find Properties with an immersive photo experience and the most listing,including the things you won't find anywhere else</p>
     </div>
-    <div class="services" >
+    <div class="services " >
         <i class="fa-solid fa-shield-heart icons"></i>
         <!-- <i style="font-size: 5rem;" class="fa-solid fa-location-crosshairs"></i> -->
-        <h1>Suitable Location</h1>
-        <p>Find Properties with an immersive photo experience and the most listing,including the things you won't find anywhere else</p>
+        <h1>Build on Trust</h1>
+        <p>Ensure trust by featuring only verified properties, where hosts and homes are authenticated through a rigorous vetting process.</p>
     </div>
 </div>

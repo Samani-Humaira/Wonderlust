@@ -64,9 +64,9 @@ body{
 }
 
 .random{
-    font-family: "Rye", serif;
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Abril Fatface", system-ui;
+  font-weight: 400;
+  font-style: normal;
     font-size: 5rem;
   }
 
@@ -94,12 +94,17 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #e3f2f5;
+    /* background-color: #e3f2f5; */
     justify-content: center;
-    border: 1px solid #a3e4ee;
     border-radius: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+  @media(width > 800px){
+    #filter{
+      background-color: #e3f2f5;
+    border: 1px solid #a3e4ee;
+    }
   }
 
   @media(width < 800px){
@@ -199,7 +204,7 @@ body{
 
   .f-info{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 10px;
     border-bottom: 1px solid rgba(186, 185, 185, 0.1);
   }
