@@ -26,7 +26,9 @@ const listingSchema =new  Schema({
       required:true,
       lowercase: true
      },
-
+     approved:{
+      type:Boolean
+     },
      reviews :[
       {
         type:Schema.Types.ObjectId,
@@ -40,7 +42,7 @@ const listingSchema =new  Schema({
      category:{
      type: [{
       type: String,
-      lowercase: true  // Convert enum values to lowercase
+      lowercase: true
     }],
     enum: ["mountain", "trending", "rooms", "cities", "farms", "domes", "arctic", "castles", "boats"],
     required: true

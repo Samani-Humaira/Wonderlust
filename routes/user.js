@@ -22,6 +22,15 @@ router.route("/login")
 }), 
 userCont.postLogin);
 
+router.get("/admin",(req,res) =>{
+    res.render("./user/admin");
+})
+router.post("/adminLogin",
+    userCont.adminLogin
+);
+
+router.route('/unApprovedListings')
+.get(userCont.getUnapprove);
 
 router.get("/logout",userCont.logout)
 

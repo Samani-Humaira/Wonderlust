@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Listing = require("../models/listing");
 
 module.exports.getsign = (req,res) =>{
     res.render("./user/signup.ejs",{isIndex:false});
@@ -44,3 +45,29 @@ module.exports.logout = (req,res) =>{
         res.redirect("/listings");
     });
 };
+
+
+module.exports.getUnapprove = async(req,res) =>{
+    const unApprovedListing = await Listing.find({approved:false});
+    res.render("./user/admin/aIndex.ejs",{UnAppListing:unApprovedListing});
+}
+
+
+module.exports.adminLogin = async (req,res) =>{
+    let {email,password} = req.body;
+    console.log("Humaira in controller now!!");
+    console.log(req.body);
+    try{
+        if(email != process.env.admin_email && password != admin_password){
+            req.flash("failure","Invalid email or password");
+            res.redirect("/admin");
+        }else{
+            // const unApprovedListing = await Listing.find({approved:false});
+            req.flash("success","Welcome to admin dashboard");
+            // res.render("./user/admin/aIndex.ejs",{UnAppListing:unApprovedListing});
+            res.redirect("/unApprovedListings");
+        }
+    }catch(err){
+        console.log(err);
+    }
+}

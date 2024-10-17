@@ -16,11 +16,15 @@ module.exports.postnewList = async (req,res,next) =>{
     const result =  new Listing(req.body.listing);
      result.owner = req.user._id;
     result.image = {url,filename};
+    result.approved = false;
     const newList = await result.save();
     console.log(newList);
     req.flash("success","new listing created");
     res.redirect("/listings");
 };
+
+
+
 
 module.exports.renderEdit = async (req,res) =>{
     const {id} = req.params;

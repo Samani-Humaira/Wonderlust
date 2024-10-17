@@ -1,0 +1,30 @@
+<%- layout("./layout/Biolerplate.ejs") %>
+<body>
+    <h1>
+        Hello admin , Happy to see you :
+        <h3>
+        </h3>
+
+            <table class="table table table-bordered border-primary">
+                <thead>
+                  <tr>
+                    <th>title</th>
+                    <th>approved status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% for(list of UnAppListing) { %>
+
+                        <tr>
+                            <td><%- list.title %></td>
+                            <td><%- list.approved %></td>
+                        </tr>
+    
+                    <% } %>
+                </tbody>
+              </table>
+
+    
+        </h3>
+    </h1>
+</body>

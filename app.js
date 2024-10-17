@@ -99,8 +99,6 @@ app.post("/Reserve",(req,res) =>{
     let {name,email,country,phoneNumber} = req.body;
 
     console.log("Booking done");
-
-
 });
 
 // app.use((err,req,res,next) =>{

@@ -1,0 +1,28 @@
+<%- layout("./layout/Biolerplate.ejs") %>
+<%- include("../includes/flash.ejs") %>
+<body>
+  <div class="d-flex flex-column min-vh-100"> 
+    <div>
+      <div class="user">
+        <h1 class="userActTitle">Welcome , Admin!</h1>
+        <div class="row row-cols-lg-5">
+          <div class="col col-lg-12">
+            <form method="post" action="/adminLogin">
+              <div class="mb-3">
+                <label for="email" class="form-label">email</label>
+                <input style="width: 100%;" required name="email" type="email" class="form-control" id="email">
+                <div class="invalid-feedback">field required</div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">password</label>
+                <input required name="password" type="password" class="form-control" id="password">
+                <div class="invalid-feedback">field required</div>
+              </div>
+              <button type="submit" class="btn button">login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
