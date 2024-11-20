@@ -21,6 +21,7 @@ const localStrategy = require("passport-local");
 const User = require("./models/user.js");
 const userRouter = require("./routes/user.js");
 const selectOptions = require("./routes/selectOptions.js");
+const adminRouter = require("./routes/admin.js");
 
 app.set("view engine","ejs");
 app.engine("ejs",ejsMate)
@@ -67,6 +68,7 @@ app.use((req,res,next) =>{
     res.locals.success = req.flash("success");
     res.locals.failure = req.flash("failure");
     res.locals.currUser = req.user;
+    // res.locals.adminUser = req.admin;
     next();
 });
 
@@ -76,6 +78,7 @@ app.get("/home",(req,res) =>{
 });
 
 app.use("/listings/find", selectOptions);
+app.use('/admin',adminRouter);
 app.use("/",userRouter);
 app.use("/listings", listingRouter);
 

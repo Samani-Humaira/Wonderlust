@@ -1,42 +1,90 @@
 <%- layout("./layout/Biolerplate.ejs") %>
 
 <%- include("../includes/flash.ejs") %>
+<style>
+  .invalid-feedback {
+  display: block;
+  color: red;
+}
+
+</style>
 <body>
   <div class="d-flex flex-column min-vh-100">
-  <div>
-    <div class="user">
-      <h1 class="userActTitle">Signup for StaySphere</h1>
-  
-  
-  <form method="post" action="/signup" class="needs-validation" novalidate>
-      <div class="mb-3">
-          <label for="username" class="form-label">username</label>
-          <input required name="username" type="text" class="form-control" id="username">
-          <div class="invalid-feedback">
-            field required
+    <div>
+      <div class="user">
+        <h1 class="userActTitle">Signup for StaySphere</h1>
+
+        <form method="post" action="/signup" class="needs-validation" novalidate id="signupForm">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username (5 characters)</label>
+            <input required name="username" type="text" class="form-control" id="username">
+            <div class="invalid-feedback" id="usernameError"></div>
           </div>
-        </div>
-  
-        <div class="mb-3">
-          <label for="email" class="form-label">email</label>
-          <input required name="email" type="email" class="form-control" id="email">
-          <div class="invalid-feedback">
-            field required
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input required name="email" type="email" class="form-control" id="email">
+            <div class="invalid-feedback" id="emailError"></div>
           </div>
-        </div>
-  
-        <div class="mb-3">
-          <label for="password" class="form-label">password</label>
-          <input required name="password" type="password" class="form-control" id="password">
-          <div class="invalid-feedback">
-            field required
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password (8+ characters, uppercase, lowercase, and numbers)</label>
+            <input required name="password" type="password" class="form-control" id="password">
+            <div class="invalid-feedback" id="passwordError"></div>
           </div>
-          
-        </div>
-      <button type="submit" class="btn button">Submit</button>
-    </form>
-  </div>
+
+          <button type="submit" class="btn button">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
-  
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+      let formIsValid = true;
+
+      // Clear previous error messages
+      document.getElementById("usernameError").textContent = "";
+      document.getElementById("emailError").textContent = "";
+      document.getElementById("passwordError").textContent = "";
+
+      // Get form values
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      // Debugging
+      console.log("Username: ", username);  
+      console.log("Password: ", password);  
+      console.log("Email: ", email);
+
+      // Validate username (exactly 5 characters)
+      if (username.length !== 5) {
+        formIsValid = false;
+        document.getElementById("usernameError").textContent = "Username must be exactly 5 characters.";
+      }
+
+      // Validate email (correct format)
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      if (!emailRegex.test(email)) {
+        formIsValid = false;
+        document.getElementById("emailError").textContent = "Please enter a valid email address (e.g. example@domain.com).";
+      }
+
+      // Validate password (8+ characters, uppercase, lowercase, and numbers)
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+      if (!passwordRegex.test(password)) {
+        formIsValid = false;
+        document.getElementById("passwordError").textContent = "Password must be at least 8 characters long, include uppercase and lowercase letters, and at least one number.";
+      }
+
+      // If form is invalid, prevent submission
+      if (!formIsValid) {
+        event.preventDefault();
+        console.log("Form validation failed.");  // Debugging
+      } else {
+        console.log("Form validation passed.");  // Debugging
+      }
+    });
+  </script>
 </body>

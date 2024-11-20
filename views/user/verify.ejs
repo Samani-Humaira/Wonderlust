@@ -1,0 +1,18 @@
+<%- layout("layout/Biolerplate.ejs") %>
+<%- include("../includes/flash.ejs") %>
+
+<body>
+  <div class="d-flex flex-column min-vh-100">
+    <div class="user">
+      <h1 class="userActTitle">Enter Your Verification Code</h1>
+      <form method="post" action="/verify">
+        <div class="mb-3">
+          <label for="code" class="form-label">Verification Code</label>
+          <input required name="code" type="text" class="form-control" id="code" maxlength="6">
+          <div class="invalid-feedback">Field required</div>
+        </div>
+        <button type="submit" class="btn button">Submit Code</button>
+      </form>
+    </div>
+  </div>
+</body>

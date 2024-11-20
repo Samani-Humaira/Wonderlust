@@ -17,6 +17,20 @@ module.exports.saveRedirectUrl = (req,res,next) =>{
     next();
 }
 
+// module.exports.isAdmin = async(req,res,next) =>{
+//     let {email,password} = req.body;
+//     console.log(email);
+//     console.log(password);
+//     if(email != process.env.admin_email && password != process.env.admin_password){
+//         req.Admin = false;
+//         return res.redirect("/");
+//     }else{
+//         req.Admin = true;
+
+//     }
+//     next();
+// }
+
 module.exports.isOwner = async (req,res,next) =>{
     const {id} = req.params;
     const listing =await Listing.findById(id);

@@ -7,39 +7,40 @@ module.exports.filteredListing = async (req,res) =>{
     res.render("./selectOptions/filteredIndex.ejs",{filteredListing,isIndex:false});
 };
 
-module.exports.search = async (req,res) =>{
-    try{
-        const { filter, srch } = req.query; // Get filter type and search term from the query
-        let query = {};
-    
-        if (srch) {
+module.exports.search = async (req, res, next) => {
+  try {
+      const { filter, srch } = req.query;
+      let query = {};
+
+      if (srch) {
           switch (filter) {
-            case 'country':
-              query.country = srch; // Filter by country
-              break;
-            case 'title':
-              query.title = new RegExp(srch, 'i'); // Filter by title (case-insensitive)
-              break;
-            case 'price':
-              const priceValue = parseFloat(srch);
-              if (!isNaN(priceValue)) {
-                query.price = { $lte: priceValue }; // Filter by price (less than or equal to the specified price)
-              }
-              break;
-            default:
-              break;
+              case 'country':
+                  query.country = srch;
+                  break;
+              case 'title':
+                  query.title = new RegExp(srch, 'i');
+                  break;
+              case 'price':
+                  const priceValue = parseFloat(srch);
+                  if (!isNaN(priceValue)) {
+                      query.price = { $lte: priceValue };
+                  }
+                  break;
+              default:
+                  break;
           }
-        }
-        let a = await Listing.find(query);
-        console.log(a);
-       if(a.length == 0){
-           req.flash("failure","Listing with this country does not exist");
-           res.redirect("./");
-           
-       }else{
-           res.render("./selectOptions/search.ejs",{a,isIndex:false});
-       }
-    }catch(err){
-       next(err);
-    } 
+      }
+      
+      let a = await Listing.find(query); // Fetch listings based on query
+      
+      if (a.length == 0) {
+        req.flash("failure", `No listings found for ${srch}. Please try searching with a different country or title .`);
+        // Flash message if no results
+          res.redirect("/listings"); // Redirect to the home page or search page
+      } else {
+          res.render("./selectOptions/search.ejs", { a, isIndex: false }); // Render search page with results
+      }
+  } catch (err) {
+      next(err); // Handle any errors
+  }
 };
