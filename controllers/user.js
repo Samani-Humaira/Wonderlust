@@ -31,7 +31,7 @@ module.exports.postLogin = async(req,res) =>{
     // res.send("welcome ");
     req.flash("success","Welcome back to wonderlust");
     let redirect = res.locals.redirectUrl || "/listings";
-    res.redirect(redirect);
+    res.redirect('/listings');
 };
 
 module.exports.logout = (req,res) =>{
@@ -46,35 +46,76 @@ module.exports.logout = (req,res) =>{
 
 
 module.exports.getUnapprove = async(req,res) =>{
-    const unApprovedListing = await Listing.find({approved:false});
-    req.admin = true;
-    res.render("./user/admin/aIndex.ejs",{UnAppListing:unApprovedListing,admin:req.admin});
+    try{
+        console.log(req.body.email);
+        console.log(req.body.password);
+        if(req.body.email == "admin@gmail.com" & req.body.password == '12as!@AS'){
+            const unApprovedListing = await Listing.find({approved:false});
+            req.admin = true;
+            res.render("./user/admin/aIndex.ejs",{UnAppListing:unApprovedListing,admin:req.admin});
+        }
+        else{
+            req.flash("failure","You are not authorized to view this page");
+            res.redirect("/listings");
+        }
+
+    
+    }catch(err){
+        console.log(err);
+    }
 }
+
+module.exports.getApprove = async(req,res) =>{
+    try{
+        // console.log(req.body.email);
+        // console.log(req.body.password);
+        // if(req.body.email == "admin@gmail.com" & req.body.password == '12as!@AS'){
+            const ApprovedListing = await Listing.find({approved:true});
+            req.admin = true;
+            res.render("./user/admin/aAppIndex.ejs",{AppListing:ApprovedListing,admin:req.admin});
+        // }
+        // else{
+        //     req.flash("failure","You are not authorized to view this page");
+        //     res.redirect("/listings");
+        // }
+
+    
+    }catch(err){
+        console.log(err);
+    }
+}
+
+// // Approve a listing by ID
+
+
+
 
 
 module.exports.adminLogin = async (req,res) =>{
     // let {email,password} = req.body;
-    console.log("Humaira in controller now!! admin middle ware works fine");
-    console.log(req.Admin);
+    // console.log("Humaira in controller now!! admin middle ware works fine");
+    // console.log(req.Admin);
     
-    // console.log(req.body);
-    // try{
-    //     if(email != process.env.admin_email && password != admin_password){
-    //         req.flash("failure","Invalid email or password");
-    //         res.redirect("/admin");
-    //         console.log("not login");
-    //     }else{
-    //         // const unApprovedListing = await Listing.find({approved:false});
-    //         req.flash("success","Welcome to admin dashboard");
-    //         // req.admin = true;
-    //         console.log("login admin");
-    //         // res.render("./user/admin/aIndex.ejs",{UnAppListing:unApprovedListing});
-    //         res.redirect("/unApprovedListings");
-    //     }
-    // }catch(err){
-    //     console.log(err);
+    // // console.log(req.body);
+    // // try{
+    // //     if(email != process.env.admin_email && password != admin_password){
+    // //         req.flash("failure","Invalid email or password");
+    // //         res.redirect("/admin");
+    // //         console.log("not login");
+    // //     }else{
+    // //         // const unApprovedListing = await Listing.find({approved:false});
+    // //         req.flash("success","Welcome to admin dashboard");
+    // //         // req.admin = true;
+    // //         console.log("login admin");
+    // //         // res.render("./user/admin/aIndex.ejs",{UnAppListing:unApprovedListing});
+    // //         res.redirect("/unApprovedListings");
+    // //     }
+    // // }catch(err){
+    // //     console.log(err);
+    // // }
+    // if(req.Admin){
+    //     res.redirect("/unApprovedListings");
     // }
-    if(req.Admin){
-        res.redirect("/unApprovedListings");
-    }
+    // req.flash("wron")
+    res.render("./user/admin/aLogin");
 }

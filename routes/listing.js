@@ -50,5 +50,26 @@ router.route("/:id")
  router.get("/:id/edit",isLoggedin, isOwner ,
  wrapAsync(listContro.renderEdit));
 
+ router.patch("/:id/approve", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Find the listing and update the `approved` field to true
+    const updatedListing = await Listing.findByIdAndUpdate(
+      id,
+      { approved: true },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedListing) {
+      return res.status(404).json({ message: "Listing not found" });
+    }
+
+    res.status(200).json({ message: "Listing approved successfully", listing: updatedListing });
+  } catch (error) {
+    console.error("Error approving listing:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 module.exports = router;

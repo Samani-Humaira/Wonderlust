@@ -28,33 +28,37 @@
             <div class="ms-auto">
                 <div class="navbar-nav">
                     <!-- Other links can go here -->
-                     <a class="btn " href="/admin/approved">Approved Listings</a>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- <h1>
+        Hello admin, Happy to see you: <%- admin %>
+    </h1> -->
 
     <table class="table table-bordered border-primary">
         <thead>
             <tr>
                 <th>Title</th>
                 <th>Approved Status</th>
-                <th>Action</th>
+                <th>See details</th>
             </tr>
         </thead>
         <tbody>
-            <% for(let list of UnAppListing) { %>
+            <% for(let list of AppListing) { %>
                 <tr>
                     <td><%- list.title %></td>
                     <td id="status-<%- list._id %>"><%- list.approved ? "Approved" : "Not Approved" %></td>
-
+                    
                     <td>
-                        <button 
+                        <!-- <button 
                             class="btn btn-success"
-                            onclick="approveListing('<%- list._id %>')"
                             <%- list.approved ? 'disabled' : '' %>>
-                            Approve
-                        </button>
+                            See details
+                        </button> -->
+
+                        <a href="http://localhost:3000/listings/<%- list._id %>">see</a>
                     </td>
                 </tr>
             <% } %>
@@ -62,21 +66,21 @@
     </table>
 
     <script>
-        async function approveListing(listingId) {
-            try {
-                const response = await axios.patch(`/listings/${listingId}/approve`);
-                if (response.status === 200) {
-                    // Update the status in the table
-                    document.getElementById(`status-${listingId}`).innerText = "Approved";
-                    alert("Listing approved successfully!");
-                } else {
-                    alert("Failed to approve listing.");
-                }
-            } catch (error) {
-                console.error("Error approving listing:", error);
-                alert("An error occurred while approving the listing.");
-            }
-        }
+        // async function approveListing(listingId) {
+        //     try {
+        //         const response = await axios.patch(`/listings/${listingId}/approve`);
+        //         if (response.status === 200) {
+        //             // Update the status in the table
+        //             document.getElementById(`status-${listingId}`).innerText = "Approved";
+        //             alert("Listing approved successfully!");
+        //         } else {
+        //             alert("Failed to approve listing.");
+        //         }
+        //     } catch (error) {
+        //         console.error("Error approving listing:", error);
+        //         alert("An error occurred while approving the listing.");
+        //     }
+        // }
     </script>
 </body>
 </html>

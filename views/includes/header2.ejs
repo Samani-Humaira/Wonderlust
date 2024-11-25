@@ -104,18 +104,27 @@
 
             
             
-          <li class="nav-item">
-            <a class="nav-link" href="/listings/new">Add spaces</a>
-          </li>
-           <%  if(!currUser) { %>
-
             <li class="nav-item">
-              <a style="color: #23b6cd;" class="nav-link active" aria-current="page" href="/signup"><b>SignUp</b></a>
+              <a class="nav-link" href="/listings/new">Add spaces</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login"><b>Login</b></a>
-            </li>
+            
+            <% if (!currUser) { %>
+              <li class="nav-item">
+                <a style="color: #23b6cd;" class="nav-link active" aria-current="page" href="/signup"><b>SignUp</b></a>
+              </li>
+            
+              <!-- Login Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <b>Login</b>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/admin">Admin</a></li>
+                  <li><a class="dropdown-item" href="/login">User</a></li>
+                </ul>
+              </li>
             <% } %>
+            
 
             <%  if(currUser) { %>
             <li class="nav-item">

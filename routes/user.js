@@ -31,6 +31,13 @@ router.route('/unApprovedListings')
 .get(
     // isAdmin,
     userCont.getUnapprove
+)
+;
+
+router.route('/ApprovedListings')
+.get(
+    // isAdmin,
+    userCont.getApprove
 );
 
 router.get("/logout",userCont.logout)

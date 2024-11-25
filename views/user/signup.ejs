@@ -1,41 +1,121 @@
-<%- layout("./layout/Biolerplate.ejs") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StaySphere</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js" integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/rating.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fredericka+the+Great&family=Geostar&family=Rubik+Mono+One&family=Rye&display=swap" rel="stylesheet">
+
+    <!-- map -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+   
+</head>
 
 <%- include("../includes/flash.ejs") %>
+
 <style>
   .invalid-feedback {
-  display: block;
-  color: red;
-}
+    display: block;
+    color: red;
+  }
 
+  .nav-link {
+    position: relative;
+    font-weight: 700;
+    font-size: larger;
+    color: #149cdc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  /* Styling for the Signup form container */
+  .signup-container {
+    max-width: 600px; /* Increase the max-width for a bigger form */
+    margin: 50px auto; /* Center the form horizontally and add space from top */
+    padding: 30px; /* Add padding inside the form */
+    border: 1px solid #ddd; /* Add border to the form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: #f9f9f9; /* Light background */
+  }
+
+  .signup-container h1 {
+    text-align: center;
+    margin-bottom: 30px; /* Add space below the heading */
+  }
+
+  .form-control {
+    margin-bottom: 15px; /* Space between form fields */
+  }
+
+  .btn.button {
+    width: 100%; /* Make the submit button take up full width */
+    padding: 12px; /* Add some padding to the button */
+    font-size: 16px; /* Increase button text size */
+  }
+
+  .signup-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .signup-link a {
+    text-decoration: none;
+    color: #116677; /* Custom color for the signup link */
+  }
 </style>
+
 <body>
-  <div class="d-flex flex-column min-vh-100">
-    <div>
-      <div class="user">
-        <h1 class="userActTitle">Signup for StaySphere</h1>
 
-        <form method="post" action="/signup" class="needs-validation" novalidate id="signupForm">
-          <div class="mb-3">
-            <label for="username" class="form-label">Username (5 characters)</label>
-            <input required name="username" type="text" class="form-control" id="username">
-            <div class="invalid-feedback" id="usernameError"></div>
-          </div>
-
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input required name="email" type="email" class="form-control" id="email">
-            <div class="invalid-feedback" id="emailError"></div>
-          </div>
-
-          <div class="mb-3">
-            <label for="password" class="form-label">Password (8+ characters, uppercase, lowercase, and numbers)</label>
-            <input required name="password" type="password" class="form-control" id="password">
-            <div class="invalid-feedback" id="passwordError"></div>
-          </div>
-
-          <button type="submit" class="btn button">Submit</button>
-        </form>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="nav-linkk active" aria-current="page" href="/" style="color:#91d8e3; font-size: 25px; font-weight: 700; text-decoration: none;">
+        <i class="fa-solid fa-house"></i> StaySphere
+      </a>
+      <div class="ms-auto">
+        <div class="navbar-nav">
+          <!-- Other links can go here -->
+        </div>
       </div>
+    </div>
+  </nav>
+
+  <div class="d-flex flex-column min-vh-100">
+    <div class="signup-container">
+      <h1>Signup for StaySphere</h1>
+
+      <form method="post" action="/signup" class="needs-validation" novalidate id="signupForm">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username (5 characters)</label>
+          <input required name="username" type="text" class="form-control" id="username">
+          <div class="invalid-feedback" id="usernameError"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input required name="email" type="email" class="form-control" id="email">
+          <div class="invalid-feedback" id="emailError"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password (8+ characters, uppercase, lowercase, and numbers)</label>
+          <input required name="password" type="password" class="form-control" id="password">
+          <div class="invalid-feedback" id="passwordError"></div>
+        </div>
+
+        <button type="submit" class="btn button">Signup</button>
+        
+        <span class="signup-link">Already Signed up? <a href="/login">Login</a></span>
+      </form>
     </div>
   </div>
 
@@ -52,11 +132,6 @@
       const username = document.getElementById("username").value;
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-
-      // Debugging
-      console.log("Username: ", username);  
-      console.log("Password: ", password);  
-      console.log("Email: ", email);
 
       // Validate username (exactly 5 characters)
       if (username.length !== 5) {
@@ -81,10 +156,8 @@
       // If form is invalid, prevent submission
       if (!formIsValid) {
         event.preventDefault();
-        console.log("Form validation failed.");  // Debugging
-      } else {
-        console.log("Form validation passed.");  // Debugging
       }
     });
   </script>
 </body>
+</html>

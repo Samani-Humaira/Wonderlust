@@ -1,28 +1,120 @@
-<%- layout("./layout/Biolerplate.ejs") %>
-<%- include("../includes/flash.ejs") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StaySphere</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js" integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/rating.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fredericka+the+Great&family=Geostar&family=Rubik+Mono+One&family=Rye&display=swap" rel="stylesheet">
+
+    <!-- map -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+</head>
+
+<style>
+    .nav-link {
+        position: relative;
+        font-weight: 700;
+        font-size: larger;
+        color: #149cdc;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    /* Custom styles to reduce white space */
+    .d-flex.min-vh-100 {
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Make sure it covers the entire viewport */
+    }
+
+    .user {
+        max-width: 400px; /* Limit the form width */
+        width: 100%;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        background-color: white;
+    }
+
+    .userActTitle {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: 10px;
+        background-color: #116677;
+        color: white;
+        border: none;
+    }
+    
+    
+
+    .btn:hover {
+        background-color: #1178b4;
+    }
+
+    .form-control {
+        margin-bottom: 10px;
+    }
+
+    .invalid-feedback {
+        display: block;
+        color: red;
+    }
+
+    /* Remove the default margin around the form */
+    .row-cols-lg-5 {
+        margin-top: 0;
+    }
+
+    /* Add some spacing between elements in the form */
+    .form-label {
+        margin-bottom: 5px;
+    }
+</style>
+
 <body>
-  <div class="d-flex flex-column min-vh-100"> <!-- Flex container -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="nav-link active" aria-current="page" href="/" style="color:#91d8e3; font-size: 25px; font-weight: 700; text-decoration: none;">
+        <i class="fa-solid fa-house"></i> StaySphere
+      </a>
+    </div>
+  </nav>
+
+  <%- include("../includes/flash.ejs") %>
+
+  <!-- Flex container for centering the form -->
+  <div class="d-flex flex-column ">
     <div>
       <div class="user">
-        <h1 class="userActTitle">login for StaySphere</h1>
-        <div class="row row-cols-lg-5">
-          <div class="col col-lg-12">
-            <form method="post" action="/login">
-              <div class="mb-3">
-                <label for="username" class="form-label">username</label>
-                <input style="width: 100%;" required name="username" type="text" class="form-control" id="username">
-                <div class="invalid-feedback">field required</div>
-              </div>
-              <div class="mb-3">
-                <label for="password" class="form-label">password</label>
-                <input required name="password" type="password" class="form-control" id="password">
-                <div class="invalid-feedback">field required</div>
-              </div>
-              <button type="submit" class="btn button">login</button>
-            </form>
+        <h1 class="userActTitle">Login for StaySphere</h1>
+        <form method="post" action="/login">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input style="width: 100%;" required name="username" type="text" class="form-control" id="username">
+            <div class="invalid-feedback">Field required</div>
           </div>
-        </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input required name="password" type="password" class="form-control" id="password">
+            <div class="invalid-feedback">Field required</div>
+          </div>
+          <button type="submit" class="btn button">Login</button>
+          <span> &nbsp; &nbsp; Not yet a member? <a style="text-decoration: none; color : rgb(17, 66, 117);" href="/signup">Signup</a> </span>
+        </form>
       </div>
     </div>
   </div>
 </body>
+</html>
