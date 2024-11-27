@@ -19,7 +19,6 @@
    
 </head>
 
-<%- include("../includes/flash.ejs") %>
 
 <style>
   .invalid-feedback {
@@ -89,6 +88,8 @@
     </div>
   </nav>
 
+  <%- include("../includes/flash.ejs") %>
+
   <div class="d-flex flex-column min-vh-100">
     <div class="signup-container">
       <h1>Signup for StaySphere</h1>
@@ -106,11 +107,22 @@
           <div class="invalid-feedback" id="emailError"></div>
         </div>
 
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="password" class="form-label">Password (8+ characters, uppercase, lowercase, and numbers)</label>
           <input required name="password" type="password" class="form-control" id="password">
           <div class="invalid-feedback" id="passwordError"></div>
-        </div>
+        </div> -->
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password (8+ characters, uppercase, lowercase, and numbers)</label>
+          <div class="input-group">
+              <input required name="password" type="password" class="form-control" id="password" placeholder="Enter your password">
+              <button type="button" class="btn btn-outline-secondary" id="togglePassword" style="border: none; background-color: transparent;">
+                  <i class="fa fa-eye" id="eyeIcon"></i>
+              </button>
+          </div>
+          <div class="invalid-feedback" id="passwordError"></div>
+      </div>
 
         <button type="submit" class="btn button">Signup</button>
         
@@ -120,6 +132,24 @@
   </div>
 
   <script>
+
+      // Toggle password visibility using Font Awesome icon
+      document.getElementById('togglePassword').addEventListener('click', function() {
+        var passwordField = document.getElementById('password');
+        var eyeIcon = document.getElementById('eyeIcon');
+        
+        // Toggle the type between password and text
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text'; // Show password
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash'); // Change icon to eye-slash
+        } else {
+            passwordField.type = 'password'; // Hide password
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye'); // Change icon to eye
+        }
+    });
+
     document.getElementById("signupForm").addEventListener("submit", function(event) {
       let formIsValid = true;
 

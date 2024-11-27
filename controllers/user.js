@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const Listing = require("../models/listing");
 
-
+const nodemailer = require('nodemailer');
 
 module.exports.getsign = (req,res) =>{
     res.render("./user/signup.ejs",{isIndex:false});
@@ -10,17 +10,77 @@ module.exports.getsign = (req,res) =>{
 module.exports.postsign = async(req,res) =>{
     try{
         let {username , password , email } = req.body;
-        console.log("Humaira here it is : ");
-        const user1 =  new User({email , username});
-        const registerdUSer = await User.register(user1 , password);
-        console.log(registerdUSer);
-        req.flash("success","Congratulation! you have signed up successfully , Now Login");
-        res.redirect("/login");
+
+        const otp = Math.floor(1000 + Math.random() * 9000);
+        req.session.username = username;
+        req.session.password = password;
+        req.session.otp = otp;
+        req.session.email = email;
+
+        const mailOptions = {
+            from: 'samanihmr@gmail.com',
+            to: email,
+            subject: 'Welcome to StaySphere! Your OTP for Signup',
+            text: `
+            Hello,
+            Welcome to StaySphere, the platform where you can manage your stays with ease and convenience! We are excited to have you on board.
+            To complete your registration, please use the following One-Time Password (OTP) to verify your account:
+            OTP: ${otp}
+            This OTP is valid for a limited time. Please enter it on the verification page to proceed with your sign-up process.
+            If you did not request this, please ignore this email.
+            Thank you for choosing StaySphere!
+
+            Best regards,
+            The StaySphere Team
+            `
+        };
+        
+
+        // Send the email
+        await transporter.sendMail(mailOptions);
+
+        console.log("Humaira in sign up , just now rendering the verify page");
+        console.log(otp);
+
+        res.render("./user/otpVerify", { email });
     }
   catch(err){
     req.flash("failure","User already exist");
     res.redirect("/signup");
+    console.log(err);
   }
+};
+
+module.exports.verifyOtp = async (req, res) => {
+    const { otp } = req.body;
+    console.log("humaira in verify backend ",otp);
+    console.log("otp in verify : session hummi",req.session.otp);
+    if (parseInt(otp) === req.session.otp) {
+        try {
+            console.log("in verify try block");
+            const { email, username ,password} = req.session;
+
+            console.log(req.body);
+            const user1 = new User({ email, username });
+
+            console.log("user1" ,user1);
+            const registeredUser = await User.register(user1, password);
+            console.log(registeredUser);
+
+            req.flash("success", "Congratulations! You have signed up successfully, now login.");
+            res.redirect("/login");
+        } catch (err) {
+            console.log("in verify catch block");
+            console.error(err);
+            req.flash("failure", "Error while registering user.");
+            res.redirect("/signup");
+        }
+    } else {
+        req.flash("failure", "Incorrect OTP. Please try again.");
+        res.redirect("/signup"); 
+        console.log("in else block of verify");
+        // console.error(err);
+    }
 };
 
 module.exports.getLogin = (req,res) =>{
@@ -47,15 +107,13 @@ module.exports.logout = (req,res) =>{
 
 module.exports.getUnapprove = async(req,res) =>{
     try{
-        console.log(req.body.email);
-        console.log(req.body.password);
         if(req.body.email == "admin@gmail.com" & req.body.password == '12as!@AS'){
             const unApprovedListing = await Listing.find({approved:false});
             req.admin = true;
             res.render("./user/admin/aIndex.ejs",{UnAppListing:unApprovedListing,admin:req.admin});
         }
         else{
-            req.flash("failure","You are not authorized to view this page");
+            req.flash("failure","You are not allowed to access the page");
             res.redirect("/listings");
         }
 
@@ -67,17 +125,9 @@ module.exports.getUnapprove = async(req,res) =>{
 
 module.exports.getApprove = async(req,res) =>{
     try{
-        // console.log(req.body.email);
-        // console.log(req.body.password);
-        // if(req.body.email == "admin@gmail.com" & req.body.password == '12as!@AS'){
             const ApprovedListing = await Listing.find({approved:true});
             req.admin = true;
             res.render("./user/admin/aAppIndex.ejs",{AppListing:ApprovedListing,admin:req.admin});
-        // }
-        // else{
-        //     req.flash("failure","You are not authorized to view this page");
-        //     res.redirect("/listings");
-        // }
 
     
     }catch(err){
@@ -85,37 +135,6 @@ module.exports.getApprove = async(req,res) =>{
     }
 }
 
-// // Approve a listing by ID
-
-
-
-
-
 module.exports.adminLogin = async (req,res) =>{
-    // let {email,password} = req.body;
-    // console.log("Humaira in controller now!! admin middle ware works fine");
-    // console.log(req.Admin);
-    
-    // // console.log(req.body);
-    // // try{
-    // //     if(email != process.env.admin_email && password != admin_password){
-    // //         req.flash("failure","Invalid email or password");
-    // //         res.redirect("/admin");
-    // //         console.log("not login");
-    // //     }else{
-    // //         // const unApprovedListing = await Listing.find({approved:false});
-    // //         req.flash("success","Welcome to admin dashboard");
-    // //         // req.admin = true;
-    // //         console.log("login admin");
-    // //         // res.render("./user/admin/aIndex.ejs",{UnAppListing:unApprovedListing});
-    // //         res.redirect("/unApprovedListings");
-    // //     }
-    // // }catch(err){
-    // //     console.log(err);
-    // // }
-    // if(req.Admin){
-    //     res.redirect("/unApprovedListings");
-    // }
-    // req.flash("wron")
     res.render("./user/admin/aLogin");
 }

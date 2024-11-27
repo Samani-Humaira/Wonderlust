@@ -27,15 +27,10 @@
             </a>
             <div class="ms-auto">
                 <div class="navbar-nav">
-                    <!-- Other links can go here -->
                 </div>
             </div>
         </div>
     </nav>
-
-    <!-- <h1>
-        Hello admin, Happy to see you: <%- admin %>
-    </h1> -->
 
     <table class="table table-bordered border-primary">
         <thead>
@@ -52,12 +47,6 @@
                     <td id="status-<%- list._id %>"><%- list.approved ? "Approved" : "Not Approved" %></td>
                     
                     <td>
-                        <!-- <button 
-                            class="btn btn-success"
-                            <%- list.approved ? 'disabled' : '' %>>
-                            See details
-                        </button> -->
-
                         <a href="http://localhost:3000/listings/<%- list._id %>">see</a>
                     </td>
                 </tr>
@@ -66,21 +55,6 @@
     </table>
 
     <script>
-        // async function approveListing(listingId) {
-        //     try {
-        //         const response = await axios.patch(`/listings/${listingId}/approve`);
-        //         if (response.status === 200) {
-        //             // Update the status in the table
-        //             document.getElementById(`status-${listingId}`).innerText = "Approved";
-        //             alert("Listing approved successfully!");
-        //         } else {
-        //             alert("Failed to approve listing.");
-        //         }
-        //     } catch (error) {
-        //         console.error("Error approving listing:", error);
-        //         alert("An error occurred while approving the listing.");
-        //     }
-        // }
     </script>
 </body>
 </html>

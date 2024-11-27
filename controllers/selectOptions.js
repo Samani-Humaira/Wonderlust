@@ -3,7 +3,7 @@ const Listing = require("../models/listing");
 module.exports.filteredListing = async (req,res) =>{
     const filter = req.query.filter;
     console.log("Humaira filter is now : ",filter);
-    let filteredListing =await Listing.find({category:filter});
+    let filteredListing =await Listing.find({category:filter,approved:true});
     res.render("./selectOptions/filteredIndex.ejs",{filteredListing,isIndex:false});
 };
 

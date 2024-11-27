@@ -1,6 +1,5 @@
 if(process.env.NODE_ENV != "production") {
 require('dotenv').config()
-// console.log(process.env.SECRET);
 }
 
 
@@ -47,7 +46,6 @@ const sessionOptions = {
     expires : Date.now() + 7 * 24 * 60 * 1000 ,
     maxAge : 7 * 24 * 60 * 1000,
     httpOnly: true ,
-    // secure: true 
 }
 
 };
@@ -68,7 +66,6 @@ app.use((req,res,next) =>{
     res.locals.success = req.flash("success");
     res.locals.failure = req.flash("failure");
     res.locals.currUser = req.user;
-    // res.locals.adminUser = req.admin;
     next();
 });
 
@@ -90,7 +87,6 @@ app.get("/Reserve",(req,res) =>{
 
 app.get("/",async (req,res) =>{
     
-    // const listing =  await Listing.find({});
     const listing = await Listing.aggregate([
         { $sample: { size: 4} }
       ]);
@@ -103,11 +99,6 @@ app.post("/Reserve",(req,res) =>{
 
     console.log("Booking done");
 });
-
-// app.use((err,req,res,next) =>{
-//     let {statusCode=500,message="Error "} = err;
-//     res.status(statusCode).render("Error.ejs",{message});
-// });
 
 app.listen(3000,(req,res) =>{
     console.log(`app is running on port 3000`);

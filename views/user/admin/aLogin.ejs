@@ -12,61 +12,153 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Fredericka+the+Great&family=Geostar&family=Rubik+Mono+One&family=Rye&display=swap" rel="stylesheet">
-    <!-- map -->
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
 </head>
 
 <style>
+    /* Custom styles for the Login form */
+    body {
+        background-color: #f4f7fb;
+        font-family: 'Rubik', sans-serif;
+    }
+
+    .navbar {
+        /* background-color: #149cdc; */
+    }
+
     .nav-link {
-        position: relative;
         font-weight: 700;
         font-size: larger;
-        color: #149cdc; /* Initial color of the link */
-        text-decoration: none; /* Remove default underline */
-        transition: color 0.3s ease; /* Smooth color transition */
+        color: #ffffff; /* White color for text */
+        text-decoration: none; 
+        transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: #91d8e3;
+    }
+
+    .d-flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh; /* Full height */
+    }
+
+    .user {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        margin: 0 auto; /* Center horizontally */
+    }
+
+    .userActTitle {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #116677;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        background-color: #116677;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .btn:hover {
+        background-color: #118f99;
+    }
+
+    .invalid-feedback {
+        display: block;
+        color: red;
+    }
+
+    .signup-link {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .signup-link a {
+        color: #116677;
+        text-decoration: none;
+    }
+
+    .signup-link a:hover {
+        text-decoration: underline;
     }
 </style>
 
-
 <body>
 
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="nav-linkk active" aria-current="page" href="/" style="color:#91d8e3; font-size: 25px; font-weight: 700; text-decoration: none;"><i class="fa-solid fa-house"></i> StaySphere</a>
+      <a class="nav-link active" aria-current="page" href="/" style="font-size: 25px;">
+        <i class="fa-solid fa-house" style="color: #91d8e3;"></i>
+        <span style="color: #91d8e3;">
+          StaySphere
+        </span>
+        
+      </a>
       <div class="ms-auto">
         <div class="navbar-nav">
-          <!-- <a class="nav-link " href="/signup">Signup</a> -->
+          <!-- Add any nav links here if needed -->
         </div>
       </div>
     </div>
   </nav>
 
-  <div class="d-flex flex-column min-vh-100"> <!-- Flex container -->
+  <div class=""> <!-- Flex container -->
     <div>
       <div class="user">
-        <h1 class="userActTitle">Login Admin ! &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  </h1>
-        <div class="row row-cols-lg-5">
-          <div class="col col-lg-12">
-            <!-- Ensure the form posts to the correct backend route -->
-            <form method="POST" action="/admin/Home">
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input style="width: 100%;" required name="email" type="email" class="form-control" id="email" placeholder="Enter your email">
-                <div class="invalid-feedback">Field required</div>
-              </div>
-              <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input required name="password" type="password" class="form-control" id="password" placeholder="Enter your password">
-                <div class="invalid-feedback">Field required</div>
-              </div>
-              <button type="submit" class="btn button">Login</button>
-              
-            </form>
+        <h1 class="userActTitle">Login Admin</h1>
+        <!-- Form for Login -->
+        <form method="POST" action="/admin/Home" id="loginForm" novalidate>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input required name="email" type="email" class="form-control" id="email" placeholder="Enter your email">
+            <!-- <div class="invalid-feedback">Please provide a valid email.</div> -->
           </div>
-        </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input required name="password" type="password" class="form-control" id="password" placeholder="Enter your password">
+            <!-- <div class="invalid-feedback">Please provide a password.</div> -->
+          </div>
+          <button type="submit" class="btn button">Login</button>
+        </form>
       </div>
     </div>
   </div>
+
+  <script>
+    // Bootstrap form validation
+    (function() {
+      'use strict';
+      // Fetch the form element
+      var form = document.getElementById('loginForm');
+
+      form.addEventListener('submit', function(event) {
+        // Disable form submission if there are validation errors
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        // Add Bootstrap's 'was-validated' class to trigger styles
+        form.classList.add('was-validated');
+      }, false);
+    })();
+  </script>
 </body>
 </html>

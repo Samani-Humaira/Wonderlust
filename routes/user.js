@@ -11,14 +11,18 @@ router.route("/signup")
 .get(userCont.getsign)
 .post(wrapAsync(userCont.postsign));
 
+router.route("/verify")
+.post(userCont.verifyOtp);
 
 router.route("/login")
 .get(userCont.getLogin)
 .post(
     saveRedirectUrl,
     passport.authenticate("local" ,{
-        failureFlash : true,
+
+    failureFlash : true,
     failureRedirect : "/login",
+    
 }), 
 userCont.postLogin);
 

@@ -1,7 +1,7 @@
 const Listing = require("../models/listing");
 
 module.exports.index = async (req,res) =>{
-    const listing =  await Listing.find({});
+    const listing =  await Listing.find({approved:true});
      res.render("./listing/index.ejs",{listing,isIndex:false});
 };
 
@@ -19,12 +19,9 @@ module.exports.postnewList = async (req,res,next) =>{
     result.approved = false;
     const newList = await result.save();
     console.log(newList);
-    req.flash("success","new listing created");
+    req.flash("success","Your listing has been submitted! Please wait for approval.");
     res.redirect("/listings");
 };
-
-
-
 
 module.exports.renderEdit = async (req,res) =>{
     const {id} = req.params;
@@ -35,7 +32,6 @@ module.exports.renderEdit = async (req,res) =>{
     }
     let originalImgUrl = listi.image.url;
     originalImgUrl = originalImgUrl.replace("/upload","/upload/w_250");
-    // console.log(originalImgUrl);
     res.render("./listing/edit.ejs",{listi,originalImgUrl,isIndex:false});
 
 };

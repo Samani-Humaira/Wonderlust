@@ -18,6 +18,7 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
 </head>
 
+
 <style>
     .nav-link {
         position: relative;
@@ -28,25 +29,25 @@
         transition: color 0.3s ease;
     }
 
-    /* Custom styles to reduce white space */
+    /* Custom styles for the Login form */
     .d-flex.min-vh-100 {
         justify-content: center;
         align-items: center;
-        height: 100vh; /* Make sure it covers the entire viewport */
+        height: 100vh; /* Full height */
     }
 
     .user {
-        max-width: 400px; /* Limit the form width */
+        max-width: 600px; /* Wider form for better UX */
         width: 100%;
-        padding: 20px;
+        padding: 30px;
         border-radius: 8px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        background-color: white;
+        background-color: #f9f9f9; /* Light background */
     }
 
     .userActTitle {
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
 
     .btn {
@@ -56,15 +57,13 @@
         color: white;
         border: none;
     }
-    
-    
 
     .btn:hover {
         background-color: #1178b4;
     }
 
     .form-control {
-        margin-bottom: 10px;
+        margin-bottom: 15px; /* More space between inputs */
     }
 
     .invalid-feedback {
@@ -72,49 +71,113 @@
         color: red;
     }
 
-    /* Remove the default margin around the form */
-    .row-cols-lg-5 {
-        margin-top: 0;
+    .signup-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
     }
 
-    /* Add some spacing between elements in the form */
-    .form-label {
-        margin-bottom: 5px;
+    .signup-link a {
+        text-decoration: none;
+        color: #116677; /* Custom color for the signup link */
     }
 </style>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">          
     <div class="container-fluid">
       <a class="nav-link active" aria-current="page" href="/" style="color:#91d8e3; font-size: 25px; font-weight: 700; text-decoration: none;">
         <i class="fa-solid fa-house"></i> StaySphere
       </a>
     </div>
-  </nav>
+  </nav>                                                                                  
 
+  <!-- Flash messages will be shown here -->
   <%- include("../includes/flash.ejs") %>
 
   <!-- Flex container for centering the form -->
-  <div class="d-flex flex-column ">
+  <div class=" flex-column min-vh-100">
     <div>
       <div class="user">
         <h1 class="userActTitle">Login for StaySphere</h1>
-        <form method="post" action="/login">
+        <form method="post" action="/login" id="loginForm" novalidate>
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
-            <input style="width: 100%;" required name="username" type="text" class="form-control" id="username">
-            <div class="invalid-feedback">Field required</div>
+            <input required name="username" type="text" class="form-control" id="username">
+            <!-- <div class="invalid-feedback">Please enter your username.</div> -->
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input required name="password" type="password" class="form-control" id="password">
-            <div class="invalid-feedback">Field required</div>
+            <div style="display: flex;">
+              <input required name="password" type="password" class="form-control" id="password">
+            <span>
+              <button type="button" class="btn btn-outline-secondary" id="togglePassword" style="border: none; background-color: transparent;">
+                <i class="fa fa-eye" id="eyeIcon"></i>
+            </button>
+            </span>
+            </div>
+            
+            <!-- <div class="invalid-feedback">Please enter your password.</div> -->
           </div>
           <button type="submit" class="btn button">Login</button>
-          <span> &nbsp; &nbsp; Not yet a member? <a style="text-decoration: none; color : rgb(17, 66, 117);" href="/signup">Signup</a> </span>
+          <span class="signup-link">Not yet a member? <a href="/signup">Signup</a></span>
         </form>
       </div>
     </div>
   </div>
+
+  <script>
+
+    
+      // Toggle password visibility using Font Awesome icon
+      document.getElementById('togglePassword').addEventListener('click', function() {
+        var passwordField = document.getElementById('password');
+        var eyeIcon = document.getElementById('eyeIcon');
+        
+        // Toggle the type between password and text
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text'; // Show password
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash'); // Change icon to eye-slash
+        } else {
+            passwordField.type = 'password'; // Hide password
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye'); // Change icon to eye
+        }
+    });
+    
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission to handle validation
+
+      const username = document.getElementById("username");
+      const password = document.getElementById("password");
+
+      // Remove previous validation classes
+      username.classList.remove("is-invalid");
+      password.classList.remove("is-invalid");
+
+      // Validate fields manually
+      let formIsValid = true;
+
+      // Validate Username
+      if (username.value.trim() === "") {
+        formIsValid = false;
+        username.classList.add("is-invalid"); // Add Bootstrap invalid class
+      }
+
+      // Validate Password
+      if (password.value.trim() === "") {
+        formIsValid = false;
+        password.classList.add("is-invalid"); // Add Bootstrap invalid class
+      }
+
+      // Submit the form only if it is valid
+      if (formIsValid) {
+        this.submit(); // If validation passes, submit the form
+      }
+    });
+  </script>
+
 </body>
 </html>

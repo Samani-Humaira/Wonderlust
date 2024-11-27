@@ -13,6 +13,41 @@ body{
     padding-top: 1rem;
     width:100%;
 }
+#togglePassword:hover i {
+  color: #149cdc; /* Blue color */
+}
+.input-group {
+  display: flex;
+  align-items: center; /* Aligns the input and button vertically in the center */
+}
+
+.input-group .form-control {
+  border-right: none; /* Remove the right border of the input field */
+}
+
+.input-group button {
+  border-left: none; /* Remove left border of the button */
+  background-color: transparent; /* Keep background transparent */
+  padding: 0 10px; /* Adjust padding for a more balanced look */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-group button i {
+  color: #888; /* Light grey color for the icon */
+  font-size: 1.2rem; /* Adjust icon size for a better fit */
+}
+
+.input-group button:hover i {
+  color: #149cdc; /* Blue color on hover */
+}
+
+
+#togglePassword i {
+  color: #888; /* Grey color by default */
+}
+
 .navbarP{
     padding-bottom: 1rem ;
     padding-top: 1rem;

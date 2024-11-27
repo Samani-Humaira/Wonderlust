@@ -1,13 +1,14 @@
 <%- layout("./layout/Biolerplate.ejs") %>
 
-<!-- <%- include("../includes/header2.ejs") %> -->
+
 
     <div class="row mt-4">
         <div class="col-lg-8 col-sm-10 offset-sm-1 offset-lg-2">
     <form method="post" action="/listings/<%= listi.id %>?_method=PATCH" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3" >
           <label for="Title" class="form-label">Title</label>
-          <input required name="listing[title]" placeholder="Enter your title" type="text" value=<%= listi.title %> class="form-control" id="Title">
+          <input required name="listing[title]" placeholder="Enter your title" type="text" value="<%= listi.title %>" class="form-control" id="Title">
+
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
@@ -39,6 +40,13 @@
             </div>
           </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+
+        <div>
+          &nbsp;
+        </div>
+        <div>
+          &nbsp;
+        </div>
       </form>
       </div>
       </div>
