@@ -7,6 +7,8 @@ module.exports.getsign = (req,res) =>{
     res.render("./user/signup.ejs",{isIndex:false});
 };
 
+
+
 module.exports.postsign = async(req,res) =>{
     try{
         let {username , password , email } = req.body;
@@ -18,7 +20,7 @@ module.exports.postsign = async(req,res) =>{
         req.session.email = email;
 
         const mailOptions = {
-            from: 'samanihmr@gmail.com',
+            from:process.env.email,
             to: email,
             subject: 'Welcome to StaySphere! Your OTP for Signup',
             text: `
@@ -34,6 +36,14 @@ module.exports.postsign = async(req,res) =>{
             The StaySphere Team
             `
         };
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.email,
+                pass: process.env.pass
+            }
+        });
         
 
         // Send the email
@@ -79,7 +89,6 @@ module.exports.verifyOtp = async (req, res) => {
         req.flash("failure", "Incorrect OTP. Please try again.");
         res.redirect("/signup"); 
         console.log("in else block of verify");
-        // console.error(err);
     }
 };
 
@@ -88,7 +97,6 @@ module.exports.getLogin = (req,res) =>{
 };
 
 module.exports.postLogin = async(req,res) =>{
-    // res.send("welcome ");
     req.flash("success","Welcome back to wonderlust");
     let redirect = res.locals.redirectUrl || "/listings";
     res.redirect('/listings');

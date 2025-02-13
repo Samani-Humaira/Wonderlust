@@ -31,16 +31,16 @@ module.exports.search = async (req, res, next) => {
           }
       }
       
-      let a = await Listing.find(query); // Fetch listings based on query
+      let a = await Listing.find(query); 
       
       if (a.length == 0) {
         req.flash("failure", `No listings found for ${srch}. Please try searching with a different country or title .`);
-        // Flash message if no results
-          res.redirect("/listings"); // Redirect to the home page or search page
+       
+          res.redirect("/listings"); 
       } else {
-          res.render("./selectOptions/search.ejs", { a, isIndex: false }); // Render search page with results
+          res.render("./selectOptions/search.ejs", { a, isIndex: false });
       }
   } catch (err) {
-      next(err); // Handle any errors
+      next(err);
   }
 };
